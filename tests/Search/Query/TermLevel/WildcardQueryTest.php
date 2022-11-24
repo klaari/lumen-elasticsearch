@@ -4,6 +4,7 @@ namespace Nord\Lumen\Elasticsearch\Tests\Search\Query\TermLevel;
 
 use Nord\Lumen\Elasticsearch\Search\Query\TermLevel\WildcardQuery;
 use Nord\Lumen\Elasticsearch\Tests\Search\Query\AbstractQueryTestCase;
+use Nord\Lumen\Elasticsearch\Exceptions\InvalidArgument;
 
 /**
  * Class WildcardQueryTest
@@ -41,11 +42,11 @@ class WildcardQueryTest extends AbstractQueryTestCase
         ], $query->toArray());
     }
 
-    /**
-     * @expectedException \Nord\Lumen\Elasticsearch\Exceptions\InvalidArgument
-     */
+
     public function testToArrayMissingFieldValue()
     {
+        $this->expectException(InvalidArgument::class);
+
         (new WildcardQuery())->toArray();
     }
 }

@@ -3,6 +3,7 @@
 namespace Nord\Lumen\Elasticsearch\Tests;
 
 use Elasticsearch\Client;
+use Elasticsearch\Namespaces\IndicesNamespace;
 use Nord\Lumen\Elasticsearch\ElasticsearchService;
 use Nord\Lumen\Elasticsearch\IndexNamePrefixer;
 use Nord\Lumen\Elasticsearch\Search\Search;
@@ -27,7 +28,7 @@ class ServiceTest extends TestCase
     /**
      * @inheritdoc
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->client = $this->getMockBuilder(Client::class)
                              ->disableOriginalConstructor()
@@ -261,7 +262,7 @@ class ServiceTest extends TestCase
     {
         $input = [];
 
-        $output = [];
+        $output = false;
 
         $this->client->expects($this->any())
                      ->method('exists')
@@ -276,7 +277,9 @@ class ServiceTest extends TestCase
      */
     public function testMethodIndices()
     {
-        $output = [];
+        $output = $this->getMockBuilder(IndicesNamespace::class)
+                       ->disableOriginalConstructor()
+                       ->getMock();
 
         $this->client->expects($this->any())
                      ->method('indices')

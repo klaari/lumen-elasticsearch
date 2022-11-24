@@ -2,6 +2,7 @@
 
 namespace Nord\Lumen\Elasticsearch\Tests\Search\Query\TermLevel;
 
+use Nord\Lumen\Elasticsearch\Exceptions\InvalidArgument;
 use Nord\Lumen\Elasticsearch\Search\Query\TermLevel\RegexpQuery;
 use Nord\Lumen\Elasticsearch\Tests\Search\Query\AbstractQueryTestCase;
 
@@ -72,11 +73,10 @@ class RegexpQueryTest extends AbstractQueryTestCase
         ], $query->toArray());
     }
 
-    /**
-     * @expectedException \Nord\Lumen\Elasticsearch\Exceptions\InvalidArgument
-     */
     public function testToArrayMissingFieldValue()
     {
+        $this->expectException(InvalidArgument::class);
+
         (new RegexpQuery())->toArray();
     }
 }

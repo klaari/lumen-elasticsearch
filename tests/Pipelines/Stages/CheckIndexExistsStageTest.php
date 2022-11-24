@@ -2,6 +2,7 @@
 
 namespace Nord\Lumen\Elasticsearch\Tests\Pipelines\Stages;
 
+use Nord\Lumen\Elasticsearch\Exceptions\IndexExistsException;
 use Nord\Lumen\Elasticsearch\Pipelines\Payloads\ApplyMigrationPayload;
 use Nord\Lumen\Elasticsearch\Pipelines\Stages\CheckIndexExistsStage;
 
@@ -11,12 +12,10 @@ use Nord\Lumen\Elasticsearch\Pipelines\Stages\CheckIndexExistsStage;
  */
 class CheckIndexExistsStageTest extends AbstractStageTestCase
 {
-
-    /**
-     * @expectedException \Nord\Lumen\Elasticsearch\Exceptions\IndexExistsException
-     */
     public function testStage()
     {
+        $this->expectException(IndexExistsException::class);
+
         $indices = $this->getMockedIndices(['exists']);
 
         $indices->expects($this->once())

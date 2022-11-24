@@ -2,6 +2,7 @@
 
 namespace Nord\Lumen\Elasticsearch\Tests\Search\Query\Compound;
 
+use Nord\Lumen\Elasticsearch\Exceptions\InvalidArgument;
 use Nord\Lumen\Elasticsearch\Search\Query\Compound\BoolQuery;
 use Nord\Lumen\Elasticsearch\Search\Query\Compound\ConstantScoreQuery;
 use Nord\Lumen\Elasticsearch\Search\Query\TermLevel\TermQuery;
@@ -42,11 +43,10 @@ class ConstantScoreQueryTest extends AbstractQueryTestCase
         ], $constantScoreQuery->toArray());
     }
 
-    /**
-     * @expectedException \Nord\Lumen\Elasticsearch\Exceptions\InvalidArgument
-     */
     public function testToArrayWithMissingQuery()
     {
+        $this->expectException(InvalidArgument::class);
+
         (new ConstantScoreQuery())->toArray();
     }
 }

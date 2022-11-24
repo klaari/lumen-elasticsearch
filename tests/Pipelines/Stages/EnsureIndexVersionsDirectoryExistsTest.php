@@ -16,7 +16,7 @@ class EnsureIndexVersionsDirectoryExistsTest extends TestCase
     /**
      * @inheritDoc
      */
-    public function setUp()
+    public function setUp(): void
     {
         // Delete the directory the test creates if it exists
         $this->ensureDirectoryNotExists();
@@ -25,7 +25,7 @@ class EnsureIndexVersionsDirectoryExistsTest extends TestCase
     /**
      * @inheritDoc
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         // Delete the directory the test created
         $this->ensureDirectoryNotExists();

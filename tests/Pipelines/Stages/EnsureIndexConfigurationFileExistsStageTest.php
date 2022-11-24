@@ -2,6 +2,7 @@
 
 namespace Nord\Lumen\Elasticsearch\Tests\Pipelines\Stages;
 
+use InvalidArgumentException;
 use Nord\Lumen\Elasticsearch\Pipelines\Payloads\CreateMigrationPayload;
 use Nord\Lumen\Elasticsearch\Pipelines\Stages\EnsureIndexConfigurationFileExistsStage;
 use Nord\Lumen\Elasticsearch\Tests\TestCase;
@@ -13,11 +14,10 @@ use Nord\Lumen\Elasticsearch\Tests\TestCase;
 class EnsureIndexConfigurationFileExistsStageTest extends TestCase
 {
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testStage()
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $payload = new CreateMigrationPayload('/does/not/exist');
         $stage   = new EnsureIndexConfigurationFileExistsStage();
 

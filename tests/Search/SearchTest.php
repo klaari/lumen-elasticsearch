@@ -43,7 +43,7 @@ class SearchTest extends TestCase
     /**
      * @inheritdoc
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -168,17 +168,16 @@ class SearchTest extends TestCase
             ],
             'size'  => 100,
         ], $this->search->buildBody());
-        
+
         // Make sure "from" is present when it's a positive number
         $this->search->setFrom(10);
 
-        $this->assertArraySubset([
-            'from' => 10,
-        ], $this->search->buildBody());
-        
+        $this->assertArrayHasKey('from', $this->search->buildBody());
+        $this->assertEquals(10, $this->search->buildBody()['from']);
+
         // Make sure "size" is not present when it's set to zero
         $this->search->setSize(0);
-        
+
         $this->assertArrayNotHasKey('size', $this->search->buildBody());
     }
 

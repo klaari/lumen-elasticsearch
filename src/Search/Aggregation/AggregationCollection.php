@@ -39,7 +39,7 @@ class AggregationCollection implements \Countable, \IteratorAggregate, Arrayable
     /**
      * {@inheritdoc}
      */
-    public function count()
+    public function count(): int
     {
         return count($this->aggregations);
     }
@@ -48,7 +48,7 @@ class AggregationCollection implements \Countable, \IteratorAggregate, Arrayable
     /**
      * {@inheritdoc}
      */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->aggregations);
     }

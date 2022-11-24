@@ -2,6 +2,7 @@
 
 namespace Nord\Lumen\Elasticsearch\Tests\Search\Query\Joining;
 
+use Nord\Lumen\Elasticsearch\Exceptions\InvalidArgument;
 use Nord\Lumen\Elasticsearch\Search\Query\Compound\BoolQuery;
 use Nord\Lumen\Elasticsearch\Search\Query\Joining\HasParentQuery;
 use Nord\Lumen\Elasticsearch\Search\Query\ScoreMode;
@@ -71,11 +72,10 @@ class HasParentQueryTest extends AbstractQueryTestCase
         ], $query->toArray());
     }
 
-    /**
-     * @expectedException \Nord\Lumen\Elasticsearch\Exceptions\InvalidArgument
-     */
     public function testToArrayWithMissingQuery()
     {
+        $this->expectException(InvalidArgument::class);
+
         (new HasParentQuery())->toArray();
     }
 }
