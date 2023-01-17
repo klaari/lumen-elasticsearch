@@ -35,11 +35,10 @@ class CreateMigrationCommand extends Command
     {
         $configurationPath = (string)$this->argument('config');
 
-        $pipeline = new Pipeline([
-            new EnsureIndexConfigurationFileExistsStage(),
-            new EnsureIndexVersionsDirectoryExists(),
-            new CreateVersionDefinitionStage(),
-        ]);
+        $pipeline = (new Pipeline)
+           ->pipe(new EnsureIndexConfigurationFileExistsStage)
+           ->pipe(new EnsureIndexVersionsDirectoryExists)
+           ->pipe(new CreateVersionDefinitionStage);
 
         $payload = new CreateMigrationPayload($configurationPath);
         $pipeline->process($payload);

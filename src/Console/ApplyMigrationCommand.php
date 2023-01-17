@@ -44,14 +44,13 @@ class ApplyMigrationCommand extends AbstractCommand
         $batchSize         = (int)$this->option('batchSize');
         $updateAllTypes    = (bool)$this->option('updateAllTypes');
 
-        $pipeline = new Pipeline([
-            new DetermineTargetVersionStage(),
-            new CheckIndexExistsStage($this->elasticsearchService),
-            new CreateIndexStage($this->elasticsearchService),
-            new StoreIndexSettingsStage($this->elasticsearchService),
-            new ReIndexStage($this->elasticsearchService),
-            new UpdateIndexAliasStage($this->elasticsearchService),
-        ]);
+        $pipeline = (new Pipeline())
+            ->pipe(new DetermineTargetVersionStage())
+            ->pipe(new CheckIndexExistsStage($this->elasticsearchService))
+            ->pipe(new CreateIndexStage($this->elasticsearchService))
+            ->pipe(new StoreIndexSettingsStage($this->elasticsearchService))
+            ->pipe(new ReIndexStage($this->elasticsearchService))
+            ->pipe(new UpdateIndexAliasStage($this->elasticsearchService));
 
         $payload = new ApplyMigrationPayload($configurationPath, $batchSize, $updateAllTypes);
 
