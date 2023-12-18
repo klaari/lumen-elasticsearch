@@ -23,9 +23,9 @@ class FunctionScoreQuery extends AbstractQuery
     use HasScoreMode;
 
     /**
-     * @var AbstractScoringFunction[]
+     * @var AbstractScoringFunction
      */
-    private $functions = [];
+    private $scriptScoringFunction;
 
     /**
      * @var float|null
@@ -60,17 +60,15 @@ class FunctionScoreQuery extends AbstractQuery
         if ($query === null) {
             $query = new MatchAllQuery();
         }
-        
+
         $array['query'] = $query->toArray();
 
-        $functions = [];
-        foreach ($this->getFunctions() as $function) {
-            $functions[] = $function->toArray();
+        $scriptScoringFunction = $this->getScriptScoringFunction();
+
+        if($scriptScoringFunction !== null) {
+            $array = array_merge($array, $scriptScoringFunction->toArray());
         }
 
-        if (!empty($functions)) {
-            $array['functions'] = $functions;
-        }
 
         $scoreMode = $this->getScoreMode();
         if ($scoreMode !== null) {
@@ -101,35 +99,21 @@ class FunctionScoreQuery extends AbstractQuery
     }
 
     /**
-     * @return AbstractScoringFunction[]
+     * @return AbstractScoringFunction|null
      */
-    public function getFunctions()
+    public function getScriptScoringFunction()
     {
-        return $this->functions;
+        return $this->scriptScoringFunction;
     }
 
 
     /**
-     * @param AbstractScoringFunction[] $functions
+     * @param AbstractScoringFunction $scriptScoringFunction
      * @return FunctionScoreQuery
      */
-    public function setFunctions(array $functions)
+    public function setSciptScoringFunction(AbstractScoringFunction $scriptScoringFunction)
     {
-        $this->functions = [];
-        foreach ($functions as $function) {
-            $this->addFunction($function);
-        }
-        return $this;
-    }
-
-
-    /**
-     * @param AbstractScoringFunction $function
-     * @return FunctionScoreQuery
-     */
-    public function addFunction(AbstractScoringFunction $function)
-    {
-        $this->functions[] = $function;
+        $this->scriptScoringFunction = $scriptScoringFunction;
 
         return $this;
     }

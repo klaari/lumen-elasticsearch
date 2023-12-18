@@ -34,7 +34,7 @@ class FunctionScoreQueryTest extends AbstractQueryTestCase
             ->setMaxBoost(14.3)
             ->setBoostMode(BoostMode::MODE_MULTIPLY)
             ->setMinScore(1)
-            ->addFunction($scriptScoringFunction);
+            ->setSciptScoringFunction($scriptScoringFunction);
 
         $expectedArray = [
             'function_score' => [
@@ -47,15 +47,11 @@ class FunctionScoreQueryTest extends AbstractQueryTestCase
                         ],
                     ]
                 ],
-                'functions' => [
-                    [
-                        'script_score' => [
-                            'script' => [
-                                'inline' => "int score =0;for(item in params.featured_content){ if (doc['identifier'].indexOf(item) > -1) { score+=10;}}return score;",
-                                'params' => [
-                                    'featured_content' => ['abc', 'xyz']
-                                ]
-                            ]
+                'script_score' => [
+                    'script' => [
+                        'inline' => "int score =0;for(item in params.featured_content){ if (doc['identifier'].indexOf(item) > -1) { score+=10;}}return score;",
+                        'params' => [
+                            'featured_content' => ['abc', 'xyz']
                         ]
                     ]
                 ],
