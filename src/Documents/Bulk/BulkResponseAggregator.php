@@ -72,9 +72,9 @@ class BulkResponseAggregator
                 continue;
             }
 
-            $this->errors[] = sprintf('Error "%s" reason "%s". Cause "%s" reason "%s". Index "%s", type "%s", id "%s"',
+            $this->errors[] = sprintf('Error "%s" reason "%s". Cause "%s" reason "%s". Index "%s", id "%s"',
                 $error['type'], $error['reason'], $causedBy['type'], $causedBy['reason'], $operation['_index'],
-                $operation['_type'], $operation['_id']);
+                $operation['_id']);
         }
     }
 }

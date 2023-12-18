@@ -142,7 +142,6 @@ class ElasticsearchService implements ElasticsearchServiceContract
     {
         return $this->search([
             'index' => $search->getIndex(),
-            'type'  => $search->getType(),
             'body'  => $search->buildBody(),
         ]);
     }
@@ -154,7 +153,6 @@ class ElasticsearchService implements ElasticsearchServiceContract
     {
         return $this->client->count([
             'index' => $this->getPrefixedIndexName($search->getIndex()),
-            'type'  => $search->getType(),
             'body'  => $search->buildBody(),
         ])['count'];
     }

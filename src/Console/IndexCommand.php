@@ -23,11 +23,6 @@ abstract class IndexCommand extends AbstractCommand
     abstract public function getIndex();
 
     /**
-     * @return string
-     */
-    abstract public function getType();
-
-    /**
      * @param mixed $item
      *
      * @return array
@@ -63,7 +58,7 @@ abstract class IndexCommand extends AbstractCommand
     {
         $indexName = $this->elasticsearchService->getPrefixedIndexName($indexName);
 
-        $this->info(sprintf('Indexing data of type "%s" into "%s"', $this->getType(), $indexName));
+        $this->info(sprintf('Indexing data into "%s"', $indexName));
 
         $data = $this->getData();
 
@@ -78,7 +73,6 @@ abstract class IndexCommand extends AbstractCommand
 
             $meta = [
                 '_index' => $indexName,
-                '_type'  => $this->getType(),
                 '_id'    => $this->getItemId($item),
             ];
 

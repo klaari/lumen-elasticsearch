@@ -14,11 +14,6 @@ class Search
     private $index;
 
     /**
-     * @var string
-     */
-    private $type;
-
-    /**
      * @var QueryDSL
      */
     private $query;
@@ -89,26 +84,6 @@ class Search
     public function getIndex()
     {
         return $this->index;
-    }
-
-    /**
-     * @param string $type
-     *
-     * @return Search
-     */
-    public function setType(string $type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 
     /**

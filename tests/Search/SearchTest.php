@@ -72,9 +72,6 @@ class SearchTest extends TestCase
         $this->search->setIndex('index');
         $this->assertEquals('index', $this->search->getIndex());
 
-        $this->search->setType('doc');
-        $this->assertEquals('doc', $this->search->getType());
-
         $this->search->setQuery($this->query);
         $this->assertInstanceOf(BoolQuery::class, $this->search->getQuery());
 
