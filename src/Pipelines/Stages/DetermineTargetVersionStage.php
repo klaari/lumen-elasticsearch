@@ -21,7 +21,13 @@ class DetermineTargetVersionStage implements StageInterface
 
         $highestVersion = 0;
 
-        foreach (scandir($payload->getIndexVersionsPath(), SCANDIR_SORT_NONE) as $file) {
+        $files = scandir($payload->getIndexVersionsPath(), SCANDIR_SORT_NONE);
+
+        if(!$files) {
+            return $payload;
+        }
+
+        foreach ($files as $file) {
             if ($file === '.' || $file === '..') {
                 continue;
             }
