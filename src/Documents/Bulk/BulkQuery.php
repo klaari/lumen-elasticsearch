@@ -66,7 +66,7 @@ class BulkQuery implements Arrayable
     /**
      * Removes all actions
      */
-    public function reset()
+    public function reset(): void
     {
         $this->actions = [];
     }

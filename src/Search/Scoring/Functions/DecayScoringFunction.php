@@ -51,7 +51,7 @@ class DecayScoringFunction extends AbstractScoringFunction
     /**
      * @inheritdoc
      */
-    public function toArray()
+    public function toArray(): array
     {
         $options = [
             'origin' => $this->getOrigin(),

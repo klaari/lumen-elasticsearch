@@ -22,7 +22,7 @@ class DummyPayload extends ApplyMigrationPayload
     /**
      * @inheritDoc
      */
-    public function getTargetConfiguration()
+    public function getTargetConfiguration(): array
     {
         return ['index' => 'foo23'];
     }
@@ -30,7 +30,7 @@ class DummyPayload extends ApplyMigrationPayload
     /**
      * @inheritDoc
      */
-    public function getTargetVersionName()
+    public function getTargetVersionName(): string
     {
         return 'foo23';
     }
@@ -38,7 +38,7 @@ class DummyPayload extends ApplyMigrationPayload
     /**
      * @inheritDoc
      */
-    public function getIndexName()
+    public function getIndexName(): string
     {
         return 'foo';
     }

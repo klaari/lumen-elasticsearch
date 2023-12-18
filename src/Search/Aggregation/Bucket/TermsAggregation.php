@@ -27,14 +27,14 @@ class TermsAggregation extends AbstractAggregation
     /**
      * @param int $minDocCount
      */
-    public function setMinDocCount(int $minDocCount)
+    public function setMinDocCount(int $minDocCount): self
     {
         $this->minDocCount = $minDocCount;
 
         return $this;
     }
 
-    public function toArray()
+    public function toArray(): array
     {
         $data = [
             'terms' => [

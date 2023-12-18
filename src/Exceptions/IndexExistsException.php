@@ -12,7 +12,7 @@ class IndexExistsException extends Exception
     /**
      * @inheritdoc
      */
-    public function __construct($index, $code = 0, \Exception $previous = null)
+    public function __construct(string $index, int $code = 0, \Exception $previous = null)
     {
         parent::__construct(sprintf('The index %s already exists', $index), $code, $previous);
     }

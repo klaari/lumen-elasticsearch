@@ -20,7 +20,7 @@ class DeleteCommand extends AbstractCommand
     /**
      * @inheritdoc
      */
-    public function handle()
+    public function handle(): int
     {
         $index = $this->elasticsearchService->getPrefixedIndexName((string)$this->argument('index'));
 

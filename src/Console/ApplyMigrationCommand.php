@@ -38,7 +38,7 @@ class ApplyMigrationCommand extends AbstractCommand
     /**
      * @inheritDoc
      */
-    public function handle()
+    public function handle(): void
     {
         $configurationPath = (string)$this->argument('config');
         $batchSize         = (int)$this->option('batchSize');

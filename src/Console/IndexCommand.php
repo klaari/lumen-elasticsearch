@@ -51,7 +51,7 @@ abstract class IndexCommand extends AbstractCommand
     /**
      * @inheritdoc
      */
-    public function handle()
+    public function handle(): void
     {
         $this->indexData($this->getIndex());
     }

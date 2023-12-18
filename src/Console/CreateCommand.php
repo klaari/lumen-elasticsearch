@@ -20,11 +20,11 @@ class CreateCommand extends AbstractCommand
     /**
      * @inheritdoc
      */
-    public function handle()
+    public function handle(): int
     {
         $config = (string)$this->argument('config');
 
-        $filePath = realpath($config);
+        $filePath = (string)realpath($config);
 
         if (!file_exists($filePath)) {
             $this->error(sprintf("Configuration file '%s' does not exist.", $config));

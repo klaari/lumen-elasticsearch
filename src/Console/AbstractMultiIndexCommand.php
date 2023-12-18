@@ -21,7 +21,7 @@ abstract class AbstractMultiIndexCommand extends IndexCommand
     /**
      * @inheritDoc
      */
-    public function handle()
+    public function handle(): void
     {
         foreach ($this->getIndices() as $index) {
             $this->indexData($index);

@@ -34,10 +34,10 @@ abstract class AbstractSort implements Arrayable
 
 
     /**
-     * @var array $options
+     * @param array $options
      * @return array
      */
-    protected function applyOptions(array $options)
+    protected function applyOptions(array $options): array
     {
         $order = $this->getOrder();
         if (null !== $order) {
@@ -57,7 +57,7 @@ abstract class AbstractSort implements Arrayable
      * @param string $order
      * @return AbstractSort
      */
-    public function setOrder($order)
+    public function setOrder($order): self
     {
         $this->order = $order;
         return $this;
@@ -77,7 +77,7 @@ abstract class AbstractSort implements Arrayable
      * @param string $mode
      * @return AbstractSort
      */
-    public function setMode($mode)
+    public function setMode($mode): self
     {
         $this->mode = $mode;
         return $this;

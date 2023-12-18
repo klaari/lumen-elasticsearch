@@ -30,7 +30,7 @@ class CreateMigrationPayload extends MigrationPayload
     /**
      * @return string
      */
-    public function getVersionPath()
+    public function getVersionPath(): string
     {
         return sprintf('%s/%d.php', $this->getIndexVersionsPath(), $this->getVersionName());
     }
@@ -38,12 +38,12 @@ class CreateMigrationPayload extends MigrationPayload
     /**
      * @return int
      */
-    public function getVersionName()
+    public function getVersionName(): int
     {
         return $this->versionName;
     }
 
-    public function getIndexVersionName()
+    public function getIndexVersionName(): string
     {
         return sprintf('%s_%d', $this->getIndexName(), $this->getVersionName());
     }

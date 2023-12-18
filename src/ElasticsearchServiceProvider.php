@@ -22,7 +22,7 @@ class ElasticsearchServiceProvider extends ServiceProvider
     /**
      * Register bindings.
      */
-    protected function registerBindings()
+    protected function registerBindings(): void
     {
         /** @noinspection PhpUndefinedMethodInspection */
         $config = $this->app['config']->get('elasticsearch', []);

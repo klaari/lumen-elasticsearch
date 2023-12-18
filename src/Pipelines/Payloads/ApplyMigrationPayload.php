@@ -47,7 +47,7 @@ class ApplyMigrationPayload extends MigrationPayload
     /**
      * @param string $targetVersionFile
      */
-    public function setTargetVersionFile($targetVersionFile)
+    public function setTargetVersionFile($targetVersionFile): void
     {
         $this->targetVersionFile = $targetVersionFile;
     }
@@ -55,7 +55,7 @@ class ApplyMigrationPayload extends MigrationPayload
     /**
      * @return string
      */
-    public function getTargetVersionPath()
+    public function getTargetVersionPath(): string
     {
         return sprintf('%s/%s', $this->getIndexVersionsPath(), $this->targetVersionFile);
     }
@@ -63,7 +63,7 @@ class ApplyMigrationPayload extends MigrationPayload
     /**
      * @return array
      */
-    public function getTargetConfiguration()
+    public function getTargetConfiguration(): array
     {
         $config = include $this->getTargetVersionPath();
 
@@ -77,7 +77,7 @@ class ApplyMigrationPayload extends MigrationPayload
     /**
      * @return string
      */
-    public function getTargetVersionName()
+    public function getTargetVersionName(): string
     {
         return $this->getTargetConfiguration()['index'];
     }
@@ -85,15 +85,15 @@ class ApplyMigrationPayload extends MigrationPayload
     /**
      * @return int
      */
-    public function getBatchSize()
+    public function getBatchSize(): int
     {
         return $this->batchSize;
     }
 
     /**
-     * @return int
+     * @return ?int
      */
-    public function getNumberOfReplicas()
+    public function getNumberOfReplicas(): ?int
     {
         return $this->numberOfReplicas;
     }
@@ -101,7 +101,7 @@ class ApplyMigrationPayload extends MigrationPayload
     /**
      * @param int $numberOfReplicas
      */
-    public function setNumberOfReplicas($numberOfReplicas)
+    public function setNumberOfReplicas($numberOfReplicas): void
     {
         $this->numberOfReplicas = $numberOfReplicas;
     }

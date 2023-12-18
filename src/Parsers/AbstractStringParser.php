@@ -3,12 +3,12 @@
 class AbstractStringParser
 {
     /**
-     * @var string
+     * @var non-empty-string
      */
     private $separator = ';';
 
     /**
-     * @var string
+     * @var non-empty-string
      */
     private $delimiter = ':';
 
@@ -44,7 +44,7 @@ class AbstractStringParser
     /**
      * @param array $config
      */
-    protected function configure(array $config)
+    protected function configure(array $config): void
     {
         if (isset($config['separator'])) {
             $this->separator = $config['separator'];
@@ -61,7 +61,7 @@ class AbstractStringParser
      *
      * @return array
      */
-    protected function splitItems($string)
+    protected function splitItems(string $string)
     {
         return strpos($string, $this->separator) !== false ? explode($this->separator, $string) : [$string];
     }
@@ -72,7 +72,7 @@ class AbstractStringParser
      *
      * @return array
      */
-    protected function splitItem($string)
+    protected function splitItem(string $string)
     {
         return explode($this->delimiter, $string);
     }

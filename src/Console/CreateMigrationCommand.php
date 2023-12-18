@@ -31,7 +31,7 @@ class CreateMigrationCommand extends Command
     /**
      * @inheritdoc
      */
-    public function handle()
+    public function handle(): void
     {
         $configurationPath = (string)$this->argument('config');
 
