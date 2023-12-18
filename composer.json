@@ -22,11 +22,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
-        "pagerfanta/pagerfanta": "^1.0",
         "phpstan/phpstan": "^1.9.2"
-    },
-    "suggest": {
-        "pagerfanta/pagerfanta": "If you intend to use the included Pagerfanta adapter"
     },
     "autoload": {
         "psr-4": {

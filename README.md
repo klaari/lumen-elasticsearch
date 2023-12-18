@@ -331,11 +331,6 @@ can override `getPrefixedIndexName()` in `ElasticsearchService`.
 Prefixing is supported for index migrations too, in which case the both the indices and the aliases created are 
 prefixed.
 
-## Pagerfanta integration
-
-There is a Pagerfanta adapter included for easy pagination. However, it is optional, so if you intend to use it you 
-must require the `pagerfanta/pagerfanta` package explicitly.
-
 ## Contributing
 
 Please read the [guidelines](.github/CONTRIBUTING.md).
